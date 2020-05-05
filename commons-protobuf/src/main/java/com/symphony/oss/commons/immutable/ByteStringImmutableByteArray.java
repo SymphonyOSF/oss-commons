@@ -40,7 +40,7 @@ import com.symphony.oss.commons.reader.ByteStringInputStream;
 import com.symphony.oss.commons.reader.ByteStringReader;
 
 @Immutable
-class ByteStringImmutableByteArray extends ImmutableByteArray
+public class ByteStringImmutableByteArray extends ImmutableByteArray
 {
   private final ByteString byteString_;
   private final byte[]     bytes_;
@@ -48,7 +48,7 @@ class ByteStringImmutableByteArray extends ImmutableByteArray
   private String           base64UrlSafeValue_;
   private String           base64Value_;
 
-  ByteStringImmutableByteArray(ByteString byteString)
+  public ByteStringImmutableByteArray(ByteString byteString)
   {
     byteString_ = byteString;
     bytes_ = byteString_.toByteArray();
@@ -111,7 +111,6 @@ class ByteStringImmutableByteArray extends ImmutableByteArray
     return byteString_.toByteArray();
   }
 
-  @Override
   public ByteString toByteString()
   {
     return byteString_;

@@ -28,8 +28,6 @@ import java.util.Iterator;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import com.google.protobuf.ByteString;
-
 /**
  * A JSON object which may be mutable or immutable.
  * 
@@ -192,29 +190,6 @@ public interface IJsonObject<N extends IJsonDomNode> extends IJsonDomNode
    * @throws IllegalStateException if the field exists but is not a string value.
    */
   @Nullable Double  getDouble(@Nonnull String name, @Nullable Double defaultValue);
-  
-  /**
-   * Return the ByteString value of the given field.
-   * 
-   * @param name The name of the required field.
-   * 
-   * @return The value of the field.
-   * 
-   * @throws IllegalStateException if the field does not exist or is not a string value.
-   */
-  @Nonnull ByteString  getRequiredByteString(@Nonnull String name);
-  
-  /**
-   * Return the ByteString value of the given field.
-   * 
-   * @param name The name of the field.
-   * @param defaultValue The value to be returned if the field does not exist.
-   * 
-   * @return The value of the field, or the defaultValue if it does not exist.
-   * 
-   * @throws IllegalStateException if the field exists but is not a string value.
-   */
-  @Nullable ByteString  getByteString(@Nonnull String name, @Nullable ByteString defaultValue);
   
   /**
    * Return the Boolean value of the given field.

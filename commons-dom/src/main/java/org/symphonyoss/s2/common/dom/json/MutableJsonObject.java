@@ -35,7 +35,6 @@ import javax.annotation.Nullable;
 
 import org.apache.commons.codec.binary.Base64;
 
-import com.google.protobuf.ByteString;
 import com.symphony.oss.commons.immutable.ImmutableByteArray;
 
 public class MutableJsonObject extends JsonObject<IJsonDomNode> implements IMutableJsonDomNode
@@ -173,14 +172,6 @@ public class MutableJsonObject extends JsonObject<IJsonDomNode> implements IMuta
     return add(name, new JsonString(value));
   }
   
-  public MutableJsonObject addIfNotNull(String name, ByteString value)
-  {
-    if(value == null)
-      return this;
-    
-    return add(name, new JsonBase64String(Base64.encodeBase64String(value.toByteArray())));
-  }
-  
   public MutableJsonObject addIfNotNull(String name, ImmutableByteArray value)
   {
     if(value == null)
@@ -267,16 +258,6 @@ public class MutableJsonObject extends JsonObject<IJsonDomNode> implements IMuta
     return add(name, array);
   }
   
-  public MutableJsonObject addCollectionOfByteString(String name, List<ByteString> value)
-  {
-    MutableJsonList array = new MutableJsonList();
-    
-    for(ByteString v : value)
-      array.add(v);
-    
-    return add(name, array);
-  }
-  
   public MutableJsonObject addCollectionOfImmutableByteArray(String name, List<ImmutableByteArray> value)
   {
     MutableJsonList array = new MutableJsonList();
@@ -352,16 +333,6 @@ public class MutableJsonObject extends JsonObject<IJsonDomNode> implements IMuta
     MutableJsonSet array = new MutableJsonSet();
     
     for(String v : value)
-      array.add(v);
-    
-    return add(name, array);
-  }
-  
-  public MutableJsonObject addCollectionOfByteString(String name, Set<ByteString> value)
-  {
-    MutableJsonSet array = new MutableJsonSet();
-    
-    for(ByteString v : value)
       array.add(v);
     
     return add(name, array);

@@ -37,7 +37,6 @@ import javax.annotation.concurrent.Immutable;
 
 import org.apache.commons.codec.binary.Base64;
 
-import com.google.protobuf.ByteString;
 import com.symphony.oss.commons.reader.ByteArrayReader;
 
 @Immutable
@@ -47,7 +46,6 @@ class ArrayBackedImmutableByteArray extends ImmutableByteArray
   private String       stringValue_;
   private String       base64UrlSafeValue_;
   private String       base64Value_;
-  private ByteString   byteStringValue_;
 
   ArrayBackedImmutableByteArray(byte[] ...bytes)
   {
@@ -165,15 +163,6 @@ class ArrayBackedImmutableByteArray extends ImmutableByteArray
   public byte[] toByteArray()
   {
     return Arrays.copyOf(bytes_, bytes_.length);
-  }
-  
-  @Override
-  public ByteString toByteString()
-  {
-    if(byteStringValue_ == null)
-      byteStringValue_ = ByteString.copyFrom(bytes_);
-    
-    return byteStringValue_;
   }
   
   @Override

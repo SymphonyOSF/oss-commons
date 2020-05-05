@@ -29,7 +29,6 @@ import java.util.Map;
 import org.apache.commons.codec.binary.Base64;
 import org.symphonyoss.s2.common.dom.json.IJsonDomNode;
 
-import com.google.protobuf.ByteString;
 import com.symphony.oss.commons.fault.CodingFault;
 import com.symphony.oss.commons.immutable.ImmutableByteArray;
 import com.symphony.oss.commons.type.provider.IBooleanProvider;
@@ -45,21 +44,7 @@ public class TypeAdaptor
   
   // We can't use lambdas as this is java7 for the benefit of SBE. Sigh.
   static
-  {
-    adaptorMap_.put(ByteString.class, 
-        new ITypeAdaptor<ByteString>(){@Override public ByteString adapt(IJsonDomNode node){
-          if(node instanceof IStringProvider)
-          {
-            String encoded = ((IStringProvider)node).asString();
-            
-            if(!Base64.isBase64(encoded))
-              throw new IllegalArgumentException("Input contains invalid Base64 characters");
-            
-            return ByteString.copyFrom(Base64.decodeBase64(encoded));
-          }
-          throw new IllegalArgumentException("String input is required.");
-          }});
-    
+  { 
     adaptorMap_.put(ImmutableByteArray.class, 
         new ITypeAdaptor<ImmutableByteArray>(){@Override public ImmutableByteArray adapt(IJsonDomNode node){
           if(node instanceof IStringProvider)

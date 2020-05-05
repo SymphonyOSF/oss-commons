@@ -16,19 +16,30 @@
    * limitations under the License.
    *
   -->
-
-  <modelVersion>4.0.0</modelVersion>
+<modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.symphony.oss.commons</groupId>
     <artifactId>commons</artifactId>
     <version>0.0.2-SNAPSHOT</version>
   </parent>
-  <artifactId>commons-core</artifactId>
+  <artifactId>commons-protobuf</artifactId>
 
   <dependencies>
     <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>commons-core</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    
+    <dependency>
       <groupId>commons-codec</groupId>
       <artifactId>commons-codec</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.protobuf</groupId>
+      <artifactId>protobuf-java</artifactId>
+      <version>3.11.4</version>
     </dependency>
   </dependencies>
 </project>

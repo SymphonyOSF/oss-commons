@@ -24,7 +24,6 @@
 package org.symphonyoss.s2.common.dom.json;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -34,9 +33,7 @@ import javax.annotation.Nullable;
 import org.symphonyoss.s2.common.dom.DomWriter;
 import org.symphonyoss.s2.common.dom.TypeAdaptor;
 
-import com.google.protobuf.ByteString;
 import com.symphony.oss.commons.type.provider.IBooleanProvider;
-import com.symphony.oss.commons.type.provider.IByteStringProvider;
 import com.symphony.oss.commons.type.provider.IDoubleProvider;
 import com.symphony.oss.commons.type.provider.IFloatProvider;
 import com.symphony.oss.commons.type.provider.IIntegerProvider;
@@ -262,34 +259,6 @@ public abstract class JsonObject<N extends IJsonDomNode> implements IJsonObject<
       return ((IDoubleProvider) node).asDouble();
     
     throw new IllegalStateException("\"" + name + "\" is not a Double");
-  }
-  
-  @Override
-  public ByteString getByteString(String name, ByteString defaultValue)
-  {
-    N node = get(name);
-    
-    if(node == null)
-      return defaultValue;
-    
-    if(node instanceof IByteStringProvider)
-      return ((IByteStringProvider) node).asByteString();
-    
-    throw new IllegalStateException("\"" + name + "\" is not a ByteString");
-  }
-  
-  @Override
-  public ByteString getRequiredByteString(String name)
-  {
-    N node = get(name);
-    
-    if(node == null)
-      throw new IllegalStateException("\"" + name + "\" does not exist");
-    
-    if(node instanceof IByteStringProvider)
-      return ((IByteStringProvider) node).asByteString();
-    
-    throw new IllegalStateException("\"" + name + "\" is not a ByteString");
   }
   
   @Override
