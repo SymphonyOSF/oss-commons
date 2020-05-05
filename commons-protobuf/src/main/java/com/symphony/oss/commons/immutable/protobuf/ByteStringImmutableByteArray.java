@@ -21,92 +21,56 @@
  * under the License.
  */
 
-package com.symphony.oss.commons.immutable;
+package com.symphony.oss.commons.immutable.protobuf;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Reader;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.Iterator;
 
 import javax.annotation.concurrent.Immutable;
 
 import org.apache.commons.codec.binary.Base64;
 
-import com.symphony.oss.commons.reader.ByteArrayReader;
+import com.google.protobuf.ByteString;
+import com.symphony.oss.commons.immutable.ImmutableByteArray;
+import com.symphony.oss.commons.reader.protobuf.ByteStringInputStream;
+import com.symphony.oss.commons.reader.protobuf.ByteStringReader;
 
 @Immutable
-class ArrayBackedImmutableByteArray extends ImmutableByteArray
+public class ByteStringImmutableByteArray extends ImmutableByteArray
 {
-  private final byte[] bytes_;
-  private String       stringValue_;
-  private String       base64UrlSafeValue_;
-  private String       base64Value_;
+  private final ByteString byteString_;
+  private final byte[]     bytes_;
+  private String           stringValue_;
+  private String           base64UrlSafeValue_;
+  private String           base64Value_;
 
-  ArrayBackedImmutableByteArray(byte[] ...bytes)
+  public ByteStringImmutableByteArray(ByteString byteString)
   {
-    int l=0;
-    
-    for(byte[] b : bytes)
-      l += b.length;
-    
-    int i=0;
-    
-    bytes_ = new byte[l];
-    
-    for(byte[] b : bytes)
-    {
-      for(byte bb : b)
-      {
-        bytes_[i++] = bb;
-      }
-    }
-  }
-
-  ArrayBackedImmutableByteArray(String stringValue)
-  {
-    stringValue_ = stringValue;
-    bytes_ = stringValue_.getBytes(StandardCharsets.UTF_8);
-  }
-
-  public ArrayBackedImmutableByteArray(InputStream in, int contentLength) throws IOException
-  {
-    bytes_ = new byte[contentLength];
-    int offset=0;
-    int remaining = contentLength;
-    int nbytes;
-    
-    while(remaining > 0)
-    {
-      nbytes = Math.min(1024, remaining);
-      
-      nbytes = in.read(bytes_, offset, nbytes);
-      
-      offset += nbytes;
-      remaining -= nbytes;
-    }
+    byteString_ = byteString;
+    bytes_ = byteString_.toByteArray();
   }
 
   @Override
   public Reader createReader(Charset charset)
   {
-    return new ByteArrayReader(bytes_, charset);
+    return new ByteStringReader(byteString_, charset);
   }
 
   @Override
   public InputStream getInputStream()
   {
-    return new ByteArrayInputStream(bytes_);
+    return new ByteStringInputStream(byteString_);
   }
 
   @Override
   public void write(OutputStream out) throws IOException
   {
-    out.write(bytes_);
+    byteString_.writeTo(out);
   }
 
   @Override
@@ -139,47 +103,36 @@ class ArrayBackedImmutableByteArray extends ImmutableByteArray
   @Override
   public Iterator<Byte> iterator()
   {
-    return new ByteIterator();
-  }
-  
-  private class ByteIterator implements Iterator<Byte>
-  {
-    private int   index_ = 0;
-    
-    @Override
-    public boolean hasNext()
-    {
-      return index_ < bytes_.length;
-    }
-
-    @Override
-    public Byte next()
-    {
-      return bytes_[index_++];
-    }
+    return byteString_.iterator();
   }
 
   @Override
   public byte[] toByteArray()
   {
-    return Arrays.copyOf(bytes_, bytes_.length);
+    return byteString_.toByteArray();
   }
-  
+
+  public ByteString toByteString()
+  {
+    return byteString_;
+  }
+
   @Override
   public int length()
   {
-    return bytes_.length;
+    return byteString_.size();
   }
 
   @Override
   public byte byteAt(int index)
   {
-    return bytes_[index];
+    return byteString_.byteAt(index);
   }
 
   @Override
   public void arraycopy(int index, byte[] dest, int destPos, int length)
   {
-    System.arraycopy(bytes_, index, dest, destPos, length);
+    for(int i=0 ; i<length ; i++)
+      dest[destPos++] = byteString_.byteAt(index++);
   }
 }

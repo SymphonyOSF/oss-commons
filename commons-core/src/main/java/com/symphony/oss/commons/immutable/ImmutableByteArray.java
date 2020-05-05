@@ -33,8 +33,6 @@ import java.nio.charset.StandardCharsets;
 
 import javax.annotation.concurrent.Immutable;
 
-import com.google.protobuf.ByteString;
-
 /**
  * An immutable container for a byte array.
  * 
@@ -101,20 +99,6 @@ public abstract class ImmutableByteArray implements Iterable<Byte>, Comparable<I
   public static ImmutableByteArray newInstance(InputStream in, int contentLength) throws IOException
   {
     return new ArrayBackedImmutableByteArray(in, contentLength);
-  }
-  
-  /**
-   * Return an ImmutableByteArray containing the given data.
-   * 
-   * This operation does not involve a defensive copy.
-   * 
-   * @param bytes The data for the ImmutableByteArray.
-   * 
-   * @return An ImmutableByteArray containing the given data.
-   */
-  public static ImmutableByteArray newInstance(ByteString bytes)
-  {
-    return new ByteStringImmutableByteArray(bytes);
   }
   
   /**
@@ -185,13 +169,6 @@ public abstract class ImmutableByteArray implements Iterable<Byte>, Comparable<I
    * @return The contents of the byte array as a Base64 (standard encoding) String.
    */
   public abstract String toBase64String();
-  
-  /**
-   * Return the contents of the byte array as a ByteString.
-   * 
-   * @return The contents of the byte array as a ByteString.
-   */
-  public abstract ByteString toByteString();
   
   /**
    * Return a copy of the contents as a byte array.

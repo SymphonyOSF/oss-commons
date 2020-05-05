@@ -28,7 +28,6 @@ import javax.annotation.concurrent.Immutable;
 
 import org.apache.commons.codec.binary.Base64;
 
-import com.google.protobuf.ByteString;
 import com.symphony.oss.commons.immutable.ImmutableByteArray;
 import com.symphony.oss.commons.type.provider.IImmutableByteArrayProvider;
 import com.symphony.oss.commons.type.provider.IValueProvider;
@@ -91,7 +90,6 @@ public class Hash implements Comparable<Hash>
 {
   /* package */ static final ImmutableByteArray NIL_BYTE_HASH       = ImmutableByteArray.newInstance(new byte[] { 0 });
   /* package */ static final String             NIL_STRING_HASH     = "0";
-  /* package */ static final ByteString         NIL_BYTESTRING_HASH = NIL_BYTE_HASH.toByteString();
   
   /** The NIL (zero) Hash. Use in preference to null values */
   public        static final Hash          NIL_HASH            = new Hash(NIL_BYTE_HASH, HashType.getNilHashType(), NIL_STRING_HASH);
@@ -189,19 +187,6 @@ public class Hash implements Comparable<Hash>
   {
     hashBytes_ = hashBytes;
     hashType_ = getTypeFromHashBytes(hashBytes);
-    hashString_ = convertBytesToString(hashType_, hashBytes_);
-  }
-
-  /**
-   * Create a Hash object from the ByteString representation.
-   * 
-   * @param byteString    The ByteString representation of a Hash.
-   * @throws IllegalArgumentException  If the given value is not a valid hash representation.
-   */
-  public Hash(ByteString byteString)
-  {
-    hashBytes_ = ImmutableByteArray.newInstance(byteString);
-    hashType_ = getTypeFromHashBytes(hashBytes_);
     hashString_ = convertBytesToString(hashType_, hashBytes_);
   }
   
@@ -398,18 +383,6 @@ public class Hash implements Comparable<Hash>
     return hashBytes_.toBase64String();
   }
 
-  /**
-   * Return the ByteString representation of this Hash.
-   * 
-   * Does not involve a copy operation.
-   * 
-   * @return The ByteString representation of this Hash.
-   */
-  public @Nonnull ByteString toByteString()
-  {
-    return hashBytes_.toByteString();
-  }
-
   @Override
   public boolean equals(Object anObject)
   {
@@ -432,24 +405,6 @@ public class Hash implements Comparable<Hash>
   public int compareTo(Hash o)
   {
     return toStringUrlSafeBase64().compareTo(o.toStringUrlSafeBase64());
-  }
-  
-  /**
-   * Create a Hash object from the byteString representation.
-   * 
-   * @param byteString    The byteString representation of a Hash.
-   * @return  a Hash object from the byteString representation.
-   * 
-   * @throws IllegalArgumentException  If the given string is not a valid hash representation.
-   */
-  public static @Nonnull Hash newInstance(ByteString byteString)
-  {
-    if(byteString == null || byteString.isEmpty())
-    {
-      return NIL_HASH;
-    }
-    
-    return new Hash(byteString);
   }
   
   /**
@@ -488,21 +443,6 @@ public class Hash implements Comparable<Hash>
     
     return ofBase64String(string);
   }
-  
-  /**
-   * Return the ByteString representation of the given Hash value.
-   * 
-   * @param hash  A Hash value.
-   * 
-   * @return The ByteString representation of the given value.
-   */
-  public static @Nonnull ByteString asByteString(Hash hash)
-  {
-    if(hash == null)
-      return NIL_BYTESTRING_HASH;
-    
-    return hash.toByteString();
-  }
 
   /**
    * Return the Hex encoding of this Hash value.
@@ -532,32 +472,6 @@ public class Hash implements Comparable<Hash>
   public String toStringUrlSafeBase64()
   {
     return hashBytes_.toBase64UrlSafeString();
-  }
-
-  /**
-   * Return the value of the given Hash as a ByteString.
-   * 
-   * @param hash A Hash value
-   * 
-   * @return the value of the given Hash as a ByteString.
-   */
-  public static ByteString toByteString(Hash hash)
-  {
-    return hash.toByteString();
-  }
-  
-  /**
-   * Return a Hash value decoded from the given ByteString value.
-   * 
-   * @param byteString An encoded Hash.
-   * 
-   * @return The Hash represented by the given encoding.
-   * 
-   * @throws IllegalArgumentException If the given encoding is invalid.
-   */
-  public static Hash build(ByteString byteString)
-  {
-    return new Hash(byteString);
   }
   
   /**
