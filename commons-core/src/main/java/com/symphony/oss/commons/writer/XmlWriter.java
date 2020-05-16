@@ -150,11 +150,11 @@ public class XmlWriter extends IndentedWriter
 	 * @param value		Contents of the element.
 	 * @param attributes	Alternate names and values of attributes for the element.
 	 */
-	public void		printElement(String name, String value, String ... attributes)
+	public void		printElement(String name, Object value, String ... attributes)
 	{
 		startElement(name, attributes);
 		if(value != null)
-			println(">" + escape(value) + "</"+ name + ">");
+			println(">" + escape(value.toString()) + "</"+ name + ">");
 		else
 			println("/>");
 		outdent();
