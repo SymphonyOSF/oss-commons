@@ -34,7 +34,7 @@ import com.symphony.oss.commons.fault.CodingFault;
  *
  * @param <T> The concrete type returned by fluent methods.
  */
-public class Fluent<T extends IFluent<T>> implements IFluent<T>
+public class Fluent<T> implements IFluent<T>
 {
   private final T self_;
   
