@@ -32,6 +32,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import javax.annotation.concurrent.Immutable;
 
@@ -39,7 +40,10 @@ import org.apache.commons.codec.binary.Base64;
 
 import com.symphony.oss.commons.reader.ByteArrayReader;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 @Immutable
+@SuppressFBWarnings("JCIP_FIELD_ISNT_FINAL_IN_IMMUTABLE_CLASS")
 class ArrayBackedImmutableByteArray extends ImmutableByteArray
 {
   private final byte[] bytes_;
@@ -155,6 +159,8 @@ class ArrayBackedImmutableByteArray extends ImmutableByteArray
     @Override
     public Byte next()
     {
+      if(index_ >= bytes_.length)
+        throw new NoSuchElementException("index is " + index_ + " length is " + bytes_.length);
       return bytes_[index_++];
     }
   }

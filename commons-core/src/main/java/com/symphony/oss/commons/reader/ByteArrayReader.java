@@ -26,15 +26,32 @@ package com.symphony.oss.commons.reader;
 import java.io.ByteArrayInputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
+/**
+ * A Reader for a byte array.
+ * 
+ * @author Bruce Skingle
+ *
+ */
 public class ByteArrayReader extends InputStreamReader
 {
-
+  /**
+   * Construct a reader using UTF_8;
+   * 
+   * @param input A byte array.
+   */
   public ByteArrayReader(byte[] input)
   {
-    super(new ByteArrayInputStream(input));
+    super(new ByteArrayInputStream(input), StandardCharsets.UTF_8);
   }
   
+  /**
+   * Construct a reader using the given charset;
+   * 
+   * @param input     A byte array.
+   * @param charset   The charset to use.
+   */
   public ByteArrayReader(byte[] input, Charset charset)
   {
     super(new ByteArrayInputStream(input), charset);

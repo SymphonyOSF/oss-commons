@@ -23,6 +23,8 @@
 
 package com.symphony.oss.commons.hash;
 
+import java.nio.charset.StandardCharsets;
+
 import javax.annotation.Nonnull;
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -131,7 +133,7 @@ public class HashFactory
       }
       else
       {
-        hashFunction_.update(part.toString().getBytes());
+        hashFunction_.update(part.toString().getBytes(StandardCharsets.UTF_8));
       }
     }
     

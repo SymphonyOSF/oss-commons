@@ -27,6 +27,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 
 /**
@@ -55,7 +56,7 @@ public class IndentedWriter extends PrintWriter
 	
 	public IndentedWriter(OutputStream out)
   {
-    super(new CountedWriter(new OutputStreamWriter(out)));
+    super(new CountedWriter(new OutputStreamWriter(out, StandardCharsets.UTF_8)));
   }
 
 	public void setPrintOffsets(boolean printOffsets)

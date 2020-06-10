@@ -44,7 +44,7 @@ public class DomWriter extends DomConsumer<DomWriter> implements IDomWriterOrBui
   
   public DomWriter(OutputStream out)
   {
-    this(new OutputStreamWriter(out), 
+    this(new OutputStreamWriter(out, StandardCharsets.UTF_8), 
         out == System.out || out == System.err, // set doNotClose for System streams
         false, false);
   }
