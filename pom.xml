@@ -27,7 +27,7 @@
 
   <groupId>com.symphony.oss.commons</groupId>
 	<artifactId>commons</artifactId>
-	<version>0.0.5-SNAPSHOT</version>
+	<version>0.1.0</version>
 	<packaging>pom</packaging>
 
 	<url>https://github.com/SymphonyOSF/oss-commons</url>
@@ -45,7 +45,7 @@
 		<connection>scm:git:git://github.com/SymphonyOSF/oss-commons.git</connection>
 		<developerConnection>scm:git:git@github.com:SymphonyOSF/oss-commons.git</developerConnection>
 		<url>https://github.com/SymphonyOSF/oss-commons</url>
-	  <tag>HEAD</tag>
+	  <tag>commons-0.1.0</tag>
   </scm>
 
 	<developers>
