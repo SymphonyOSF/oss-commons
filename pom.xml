@@ -22,7 +22,7 @@
 	<parent>
 		<groupId>com.symphony.oss</groupId>
 		<artifactId>oss-parent-pom</artifactId>
-		<version>0.2.0</version><!-- oss-parent-pom -->
+		<version>0.2.2</version><!-- oss-parent-pom -->
 	</parent>
 
   <groupId>com.symphony.oss.commons</groupId>
