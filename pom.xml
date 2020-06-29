@@ -22,12 +22,12 @@
 	<parent>
 		<groupId>com.symphony.oss</groupId>
 		<artifactId>oss-parent-pom</artifactId>
-		<version>0.2.0</version><!-- oss-parent-pom -->
+		<version>0.4.0</version><!-- oss-parent-pom -->
 	</parent>
 
   <groupId>com.symphony.oss.commons</groupId>
 	<artifactId>commons</artifactId>
-	<version>0.1.1-SNAPSHOT</version>
+	<version>0.1.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<url>https://github.com/SymphonyOSF/oss-commons</url>
