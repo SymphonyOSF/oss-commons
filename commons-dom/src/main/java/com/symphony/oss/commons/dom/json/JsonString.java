@@ -58,7 +58,7 @@ public class JsonString extends JsonValue<String, JsonString> implements IString
           
         default:
           if(c < ' ')
-            b.append(String.format("\\%04x", (int) c));
+            b.append(String.format("\\u%04x", (int) c));
           else
             b.append(c);
       }
