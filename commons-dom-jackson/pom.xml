@@ -26,7 +26,7 @@
   <parent>
     <groupId>com.symphony.oss.commons</groupId>
     <artifactId>commons</artifactId>
-    <version>0.2.1-SNAPSHOT</version>
+    <version>0.2.2-SNAPSHOT</version>
   </parent>
   <artifactId>commons-dom-jackson</artifactId>
   
@@ -34,12 +34,12 @@
     <dependency>
       <groupId>com.symphony.oss.commons</groupId>
       <artifactId>commons-core</artifactId>
-      <version>0.2.1-SNAPSHOT</version>
+      <version>0.2.2-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>com.symphony.oss.commons</groupId>
       <artifactId>commons-dom</artifactId>
-      <version>0.2.1-SNAPSHOT</version>
+      <version>0.2.2-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>commons-codec</groupId>
