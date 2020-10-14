@@ -23,7 +23,7 @@
 
 package com.symphony.oss.commons.type.provider;
 
-public interface ILongProvider
+public interface ILongProvider extends IValueProvider
 {
   Long asLong();
 }
