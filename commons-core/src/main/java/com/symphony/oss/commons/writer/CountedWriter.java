@@ -36,6 +36,11 @@ public class CountedWriter extends Writer
 	private Writer	  out_;
 	private int				counted_ = 0;
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param out An existing writer for which output will be counted.
+	 */
 	public	CountedWriter(Writer out)
 	{
 		out_ = out;
@@ -74,16 +79,27 @@ public class CountedWriter extends Writer
 		counted_--;
 	}
 
+	/**
+	 * Return the number of bytes written.
+	 * 
+	 * @return the number of bytes written.
+	 */
 	public long getOffset()
 	{
 		return offset_;
 	}
 
+	/**
+	 * Suspend counting. Calls may be nested and must be matched with calls to endUncounted().
+	 */
 	public void	beginUncounted()
 	{
 		counted_++;
 	}
 	
+	/**
+   * Resume counting. Calls may be nested and must be matched with calls to beginUncounted().
+   */
 	public void	endUncounted()
 	{
 		counted_--;
@@ -100,6 +116,4 @@ public class CountedWriter extends Writer
 	{
 		out_.flush();
 	}
-	
-	
 }

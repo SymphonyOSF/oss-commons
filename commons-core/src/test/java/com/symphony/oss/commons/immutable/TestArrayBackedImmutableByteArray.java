@@ -29,8 +29,7 @@ import java.nio.charset.StandardCharsets;
 
 import org.junit.Test;
 
-import com.symphony.oss.commons.immutable.ImmutableByteArray;
-
+@SuppressWarnings("javadoc")
 public class TestArrayBackedImmutableByteArray
 {
   @Test

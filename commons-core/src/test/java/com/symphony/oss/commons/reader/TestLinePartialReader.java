@@ -29,9 +29,7 @@ import java.io.StringReader;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.symphony.oss.commons.reader.LinePartialReader;
-
-
+@SuppressWarnings("javadoc")
 public class TestLinePartialReader
 {
   @Test

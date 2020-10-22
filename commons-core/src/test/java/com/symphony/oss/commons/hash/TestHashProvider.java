@@ -25,13 +25,10 @@ package com.symphony.oss.commons.hash;
 
 import java.nio.charset.StandardCharsets;
 
+import org.junit.Assert;
 import org.junit.Test;
 
-import com.symphony.oss.commons.hash.Hash;
-import com.symphony.oss.commons.hash.HashProvider;
-
-import org.junit.Assert;
-
+@SuppressWarnings("javadoc")
 public class TestHashProvider
 {
   @Test
