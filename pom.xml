@@ -22,7 +22,7 @@
 	<parent>
 		<groupId>com.symphony.oss</groupId>
 		<artifactId>oss-parent-pom</artifactId>
-		<version>0.4.1</version><!-- oss-parent-pom -->
+		<version>0.4.2</version><!-- oss-parent-pom -->
 	</parent>
 
   <groupId>com.symphony.oss.commons</groupId>
@@ -102,6 +102,7 @@
 	<module>commons-dom</module>
 	<module>commons-dom-jackson</module>
 	<module>commons-protobuf</module>
+	<module>commons-spotbugs</module>
 	</modules>
 
 	<build>
