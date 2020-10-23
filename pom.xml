@@ -102,6 +102,7 @@
 	<module>commons-dom</module>
 	<module>commons-dom-jackson</module>
 	<module>commons-protobuf</module>
+	<module>commons-spotbugs</module>
 	</modules>
 
 	<build>

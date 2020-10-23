@@ -41,7 +41,10 @@ import org.apache.commons.codec.binary.Base64;
 
 import com.symphony.oss.commons.reader.ByteArrayReader;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 @Immutable
+@SuppressFBWarnings("JCIP_FIELD_ISNT_FINAL_IN_IMMUTABLE_CLASS")
 class ArrayBackedImmutableByteArray extends ImmutableByteArray
 {
   private final byte[] bytes_;
