@@ -33,8 +33,6 @@ import java.util.TreeSet;
 
 import javax.annotation.Nullable;
 
-import org.apache.commons.codec.binary.Base64;
-
 import com.symphony.oss.commons.immutable.ImmutableByteArray;
 
 public class MutableJsonObject extends JsonObject<IJsonDomNode> implements IMutableJsonDomNode
@@ -379,7 +377,7 @@ public class MutableJsonObject extends JsonObject<IJsonDomNode> implements IMuta
    * 
    * @return this (fluent method).
    */
-  public MutableJsonObject addAll(JsonObject<?> other, String ignorePrefix)
+  public MutableJsonObject addAll(JsonObject<?> other, @Nullable String ignorePrefix)
   {
     Iterator<String> it = other.getNameIterator();
     
