@@ -27,7 +27,7 @@
 
   <groupId>com.symphony.oss.commons</groupId>
 	<artifactId>commons</artifactId>
-	<version>0.2.3-SNAPSHOT</version>
+	<version>0.2.3</version>
 	<packaging>pom</packaging>
 
 	<url>https://github.com/SymphonyOSF/oss-commons</url>
