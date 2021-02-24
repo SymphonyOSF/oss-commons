@@ -28,8 +28,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import com.symphony.oss.commons.immutable.ImmutableByteArray;
-
 /**
  * Unit test for ImmutableByteArray
  * 
@@ -72,6 +70,4 @@ public class TestImmutableByteArray
       assertTrue(ic > 0);
     
   }
-  
-  
 }

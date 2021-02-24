@@ -34,6 +34,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import javax.annotation.Nonnull;
 import javax.annotation.concurrent.Immutable;
 
 import org.apache.commons.codec.binary.Base64;
@@ -141,7 +142,7 @@ class ArrayBackedImmutableByteArray extends ImmutableByteArray
   }
 
   @Override
-  public Iterator<Byte> iterator()
+  public @Nonnull Iterator<Byte> iterator()
   {
     return new ByteIterator();
   }

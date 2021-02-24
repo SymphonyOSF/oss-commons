@@ -25,16 +25,14 @@ package com.symphony.oss.commons.hash;
 
 import static org.junit.Assert.assertEquals;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 import org.junit.Test;
 
-import com.symphony.oss.commons.hash.Hash;
-import com.symphony.oss.commons.hash.HashFactory;
-import com.symphony.oss.commons.hash.HashProvider;
-
 import junit.framework.AssertionFailedError;
 
+@SuppressWarnings("javadoc")
 public class TestHash
 {
   @Test
@@ -46,6 +44,34 @@ public class TestHash
       
       assertEquals(i, hash.getTypeId());
     }
+  }
+  
+  @Test
+  public void testPartitionId()
+  {
+    Hash hash = HashProvider.getHashOf(
+        ("{\n" +
+        "    \"_type\":\"com.symphony.s2.model.object.NamedUserIdObject\",\n" +
+        "    \"_version\":\"1.0\",\n" +
+        "    \"hashType\":1,\n" +
+        "    \"name\":\"MyCalendar\",\n" +
+        "    \"userId\":351775001412007\n" +
+        "  }"
+        ).getBytes(StandardCharsets.UTF_8));
+    
+    System.out.println("Hash=" + hash);
+    
+    Hash hash2 = HashProvider.getHashOf(
+        ("{\n" + 
+    "  \"_type\":\"com.symphony.s2.model.object.NamedUserIdObject\",\n" + 
+    "  \"_version\":\"1.0\",\n" + 
+    "  \"hashType\":1,\n" + 
+    "  \"name\":\"MyCalendar\",\n" + 
+    "  \"userId\":351775001412007\n" + 
+    "}\n"
+            ).getBytes(StandardCharsets.UTF_8));
+    
+        System.out.println("Hash2=" + hash2);
   }
   
   

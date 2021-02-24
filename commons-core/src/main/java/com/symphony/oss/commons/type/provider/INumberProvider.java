@@ -1,7 +1,7 @@
 /*
  *
  *
- * Copyright 2017 Symphony Communication Services, LLC.
+ * Copyright 2020 Symphony Communication Services, LLC.
  *
  * Licensed to The Symphony Software Foundation (SSF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -23,7 +23,7 @@
 
 package com.symphony.oss.commons.type.provider;
 
-public interface ILongProvider extends IValueProvider
+public interface INumberProvider extends IValueProvider
 {
-  Long asLong();
+  Number asNumber();
 }

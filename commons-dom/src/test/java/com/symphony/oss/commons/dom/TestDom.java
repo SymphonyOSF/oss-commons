@@ -23,12 +23,9 @@
 
 package com.symphony.oss.commons.dom;
 
-import java.io.IOException;
-
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.symphony.oss.commons.dom.DomSerializer;
 import com.symphony.oss.commons.dom.json.ImmutableJsonObject;
 import com.symphony.oss.commons.dom.json.JsonBoolean;
 import com.symphony.oss.commons.dom.json.JsonDouble;
@@ -38,11 +35,13 @@ import com.symphony.oss.commons.dom.json.JsonString;
 import com.symphony.oss.commons.dom.json.MutableJsonDom;
 import com.symphony.oss.commons.dom.json.MutableJsonList;
 import com.symphony.oss.commons.dom.json.MutableJsonObject;
+import com.symphony.oss.commons.dom.json.MutableJsonSet;
 
+@SuppressWarnings("javadoc")
 public class TestDom
 {
   @Test
-  public void testJsonDom() throws IOException
+  public void testJsonDom()
   {
     DomSerializer serializer = DomSerializer.newBuilder().build();
        
@@ -78,7 +77,7 @@ public class TestDom
   }
 
   @Test
-  public void testCanonicalJsonDom() throws IOException
+  public void testCanonicalJsonDom()
   {
     DomSerializer serializer = DomSerializer.newBuilder()
         .withCanonicalMode(true)
@@ -148,6 +147,44 @@ public class TestDom
     
     test(expected, 
         serializer.serialize(immutableObject));
+}
+  
+  @Test
+  public void testArray()
+  {
+    DomSerializer serializer = DomSerializer.newBuilder()
+        .withCanonicalMode(true)
+        .build();
+    
+    test("[\n" + 
+        "  \"Hello Two\",\n" + 
+        "  \"Hello One\",\n" + 
+        "  \"Hello Two\"\n" + 
+        "]\n", serializer.serialize(new MutableJsonDom().add(new JsonString("Hello Two")).add(new JsonString("Hello One")).add(new JsonString("Hello Two"))));
+    
+    MutableJsonDom dom = new MutableJsonDom()
+        .add(new MutableJsonObject().add("List", new MutableJsonList()
+            .add(new JsonString("Hello B")).add(new JsonString("Hello A")).add(new JsonString("Hello B"))
+        )
+            .add("Set", new MutableJsonSet()
+              .add(new JsonString("Hello B")).add(new JsonString("Hello A")).add(new JsonString("Hello B"))
+        )
+            .add("MauritzioVeryLongNameDude", new JsonString("Green")));
+    
+    test("{\n" + 
+        "  \"List\":[\n" + 
+        "    \"Hello B\",\n" + 
+        "    \"Hello A\",\n" + 
+        "    \"Hello B\"\n" + 
+        "  ],\n" + 
+        "  \"MauritzioVeryLongNameDude\":\"Green\",\n" + 
+        "  \"Set\":[\n" + 
+        "    \"Hello A\",\n" + 
+        "    \"Hello B\"\n" + 
+        "  ]\n" + 
+        "}\n", serializer.serialize(dom)
+        );
+
   }
   
   @Test
